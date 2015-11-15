@@ -3,6 +3,7 @@ package com.testtask.currencyf;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -20,8 +21,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.testtask.currencyf.domain.Currency;
+
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        Fragment1_CurrentCurrencyRate.Callbacks{
 
     public static final String LOG_DEBUG ="Debug" ;
 
@@ -106,7 +112,19 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    //overriding method of callback interface for recieving data
+    // from fragment and sending them to new frag
+    @Override
+    public void onItemSelected(Currency currency) {
+        Bundle b = currency.toBundle();
+//        Intent intent = new Intent(this, Fragment_CurrencyDetailed.class);
+//        intent.putExtra("Bundle", b);
+        Fragment_CurrencyDetailed frag = new Fragment_CurrencyDetailed();
+        frag.setArguments(b);
 
+        getFragmentManager().beginTransaction()
+                .replace(R.id.myContainer, frag)
+                .commit();
 
-
+    }
 }

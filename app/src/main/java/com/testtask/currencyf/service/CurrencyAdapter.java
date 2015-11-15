@@ -27,7 +27,7 @@ public class CurrencyAdapter extends ArrayAdapter<Currency>{
         this.objects=objects;
     }
 
-    /*@Override
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Currency currency = objects.get(position);
 
@@ -53,5 +53,5 @@ public class CurrencyAdapter extends ArrayAdapter<Currency>{
         image.setImageResource(res);
 
         return view;
-    }*/
+    }
 }

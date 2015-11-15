@@ -1,9 +1,20 @@
 package com.testtask.currencyf.domain;
 
+import android.os.Bundle;
+import android.os.Parcelable;
+
 /**
  * Created by konstr on 30.10.2015.
  */
 public class Currency {
+
+    //	constants for field references
+    public static final String CURRENCY_NAME = "currncyName";
+    public static final String BUY_COEF = "buyCoef";
+    public static final String SALE_COEF = "saleCoef";
+    public static final String BUY_COEF_NB = "buyCoefNB";
+    public static final String SALE_COEF_NB = "saleCoefNB";
+
 
     private String name;
     private String shortName;
@@ -71,4 +82,29 @@ public class Currency {
                 ", buyCoefNB=" + buyCoefNB +
                 '}';
     }
+
+    public Currency(){}
+
+    //	Create from a bundle
+    public Currency (Bundle b) {
+        if (b != null) {
+            this.name = b.getString(CURRENCY_NAME);
+            this.buyCoef = b.getInt(BUY_COEF);
+            this.saleCoef = b.getDouble(SALE_COEF);
+            this.buyCoefNB=b.getDouble(BUY_COEF_NB);
+            this.saleCoefNB=b.getDouble(SALE_COEF_NB);
+        }
+    }
+
+    //	Package data for transfer between activities
+    public Bundle toBundle() {
+        Bundle b = new Bundle();
+        b.putString(CURRENCY_NAME, this.name);
+        b.putDouble(BUY_COEF, this.buyCoef);
+        b.putDouble(SALE_COEF, this.saleCoef);
+        b.putDouble(BUY_COEF_NB, this.buyCoefNB);
+        b.putDouble(SALE_COEF_NB, this.saleCoefNB);
+        return b;
+    }
+
 }

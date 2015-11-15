@@ -1,5 +1,6 @@
 package com.testtask.currencyf;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
     private ProgressBar pb;
     private List<MyTask> tasks;
     private List<Currency> list;
+    private Callbacks activity;
 
 
     private static final String PB_API = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
@@ -57,6 +60,14 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
 
         Button b = (Button) rootview.findViewById(R.id.button);
         b.setOnClickListener(this);
+
+        //setting onclick listener to layout
+        RelativeLayout usdRL=(RelativeLayout)rootview.findViewById(R.id.usd_linear_layout);
+        RelativeLayout eurRL=(RelativeLayout)rootview.findViewById(R.id.eur_linear_layout);
+        RelativeLayout rubRL=(RelativeLayout)rootview.findViewById(R.id.rub_linear_layout);
+        usdRL.setOnClickListener(this);
+        eurRL.setOnClickListener(this);
+        rubRL.setOnClickListener(this);
 
         getCurrencyRate();
 
@@ -125,6 +136,21 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
             case R.id.button:
                 getCurrencyRate();
                 break;
+            case R.id.usd_linear_layout:
+                Log.d(LOG_DEBUG, "usd layout clicked");
+                Currency cur = list.get(2);
+                activity.onItemSelected(cur);
+                break;
+            case R.id.eur_linear_layout:
+                Log.d(LOG_DEBUG, "eur layout clicked");
+                Currency cur2 = list.get(1);
+                activity.onItemSelected(cur2);
+                break;
+            case R.id.rub_linear_layout:
+                Log.d(LOG_DEBUG, "rub layout clicked");
+                Currency cur3 = list.get(0);
+                activity.onItemSelected(cur3);
+                break;
         }
 
     }
@@ -160,5 +186,16 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
                 pb.setVisibility(View.INVISIBLE);
             }
         }
+    }
+
+    //interface for sending data (currency Bundle) to main activity
+    public interface Callbacks{
+        public void onItemSelected(Currency currency);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        this.activity= (Callbacks) activity;
     }
 }
