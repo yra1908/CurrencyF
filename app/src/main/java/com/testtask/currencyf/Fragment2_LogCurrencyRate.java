@@ -49,7 +49,6 @@ public class Fragment2_LogCurrencyRate extends ListFragment
     private ProgressBar pb;
     private List<MyTask> tasks;
 
-    private static final int DATE_DIALOG_ID = 999;
     private static final String LOG_PB_API = "https://api.privatbank.ua/p24api/exchange_rates?json&date=";
 
     public Fragment2_LogCurrencyRate(){
@@ -85,7 +84,7 @@ public class Fragment2_LogCurrencyRate extends ListFragment
         final Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
         month = c.get(Calendar.MONTH);
-        day = 1;
+        day = c.get(Calendar.DAY_OF_MONTH);;
 
         // set current date into textview
         tvDisplayDate.setText(new StringBuilder()
@@ -95,21 +94,10 @@ public class Fragment2_LogCurrencyRate extends ListFragment
     }
 
     //setting date for query
-    @SuppressWarnings("deprecation")
     public void setDate() {
-        getActivity().showDialog(DATE_DIALOG_ID);
-    }
-
-    @SuppressWarnings("deprecation")
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_DIALOG_ID:
-                /*//DatePicker theme changed
-                return new DatePickerDialog(this, R.style.datePickerTheme, datePickerListener,*/
-                return new DatePickerDialog(getActivity(), datePickerListener,
-                        year, month, day);
-        }
-        return null;
+        DatePickerDialog d = new DatePickerDialog(getActivity(),
+                datePickerListener, year, month, day);
+        d.show();
     }
 
     private DatePickerDialog.OnDateSetListener datePickerListener =
