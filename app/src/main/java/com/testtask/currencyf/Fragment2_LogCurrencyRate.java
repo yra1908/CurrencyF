@@ -1,6 +1,7 @@
 package com.testtask.currencyf;
 
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ListFragment;
@@ -45,6 +46,7 @@ public class Fragment2_LogCurrencyRate extends ListFragment
     private int month;
     private int day;
     private List<Currency> list;
+    private Callbacks activity;
 
     private ProgressBar pb;
     private List<MyTask> tasks;
@@ -202,5 +204,20 @@ public class Fragment2_LogCurrencyRate extends ListFragment
 
     }
 
+    //interface for sending data (currency Bundle) to main activity
+    public interface Callbacks{
+        public void onItemSelected(Currency currency);
+    }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        this.activity= (Callbacks) activity;
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        Currency currency = list.get(position);
+        activity.onItemSelected(currency);
+    }
 }

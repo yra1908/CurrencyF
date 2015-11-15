@@ -22,5 +22,6 @@
     <string name="build_graph_button">BUILD GRAPH</string>
     <string name="clear_graph_button">CLEAR GRAPH</string>
     <string name="curency_type">Currency Type</string>
+    <string name="title_activity_currency_detailed">Currency Detailed</string>
 
 </resources>

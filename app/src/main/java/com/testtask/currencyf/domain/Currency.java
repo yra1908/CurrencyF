@@ -89,7 +89,7 @@ public class Currency {
     public Currency (Bundle b) {
         if (b != null) {
             this.name = b.getString(CURRENCY_NAME);
-            this.buyCoef = b.getInt(BUY_COEF);
+            this.buyCoef = b.getDouble(BUY_COEF);
             this.saleCoef = b.getDouble(SALE_COEF);
             this.buyCoefNB=b.getDouble(BUY_COEF_NB);
             this.saleCoefNB=b.getDouble(SALE_COEF_NB);

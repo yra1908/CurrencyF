@@ -27,9 +27,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        Fragment1_CurrentCurrencyRate.Callbacks{
+        Fragment2_LogCurrencyRate.Callbacks{
 
-    public static final String LOG_DEBUG ="Debug" ;
+    public static final String LOG_DEBUG ="Debug";
+    public static final String CURRENCY_BUNDLE ="CurrencyBundle";
+    public static final int REQUEST_CODE =1001;
+    public static String PACKAGE_NAME;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        PACKAGE_NAME = getApplicationContext().getPackageName();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -112,13 +117,22 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    //overriding method of callback interface for recieving data
-    // from fragment and sending them to new frag
+
     @Override
     public void onItemSelected(Currency currency) {
         Bundle b = currency.toBundle();
-//        Intent intent = new Intent(this, Fragment_CurrencyDetailed.class);
-//        intent.putExtra("Bundle", b);
+        Intent intent = new Intent(this, CurrencyDetailedActivity.class);
+        intent.putExtra(CURRENCY_BUNDLE, b);
+        startActivityForResult(intent, REQUEST_CODE);
+
+    }
+
+    /*//overriding method of callback interface for recieving data
+    // from fragment and sending them to new frag
+    //Using it when replacing fragments in one activity & sending data
+    @Override
+    public void onItemSelected(Currency currency) {
+        Bundle b = currency.toBundle();
         Fragment_CurrencyDetailed frag = new Fragment_CurrencyDetailed();
         frag.setArguments(b);
 
@@ -126,5 +140,5 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.myContainer, frag)
                 .commit();
 
-    }
+    }*/
 }
