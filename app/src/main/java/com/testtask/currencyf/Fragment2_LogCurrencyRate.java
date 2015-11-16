@@ -3,15 +3,12 @@ package com.testtask.currencyf;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.ListFragment;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +54,6 @@ public class Fragment2_LogCurrencyRate extends ListFragment
 
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootview=inflater.inflate(R.layout.fragment2_log_currency_rate, container, false);
@@ -122,7 +118,6 @@ public class Fragment2_LogCurrencyRate extends ListFragment
         if (isOnline()) {
             int inputMonth=month+1;
             String API = LOG_PB_API + day + "."+ inputMonth + "." + year;
-            Log.d("string API - ", API);
             requestData(API);
         } else {
             Toast.makeText(getActivity(), "Network isn't available", Toast.LENGTH_LONG).show();
@@ -159,11 +154,9 @@ public class Fragment2_LogCurrencyRate extends ListFragment
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnChangeDate:
-                Log.d(MainActivity.LOG_DEBUG, "change date button clicked");
                 setDate();
                 break;
             case R.id.button:
-                Log.d(MainActivity.LOG_DEBUG, "get log data button clicked");
                 getCurrencyLogForSetDate();
                 break;
         }
@@ -190,9 +183,9 @@ public class Fragment2_LogCurrencyRate extends ListFragment
         @Override
         protected void onPostExecute(String result) {
 
-            Log.d("LogActivity", "before parse list");
+
             list = CurrencyJSONParser.parseLogFeed(result);
-            Log.d("LogActivity", "after parse list");
+
 
             updateDisplay();
 

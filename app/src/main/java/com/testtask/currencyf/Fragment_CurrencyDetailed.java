@@ -2,8 +2,6 @@ package com.testtask.currencyf;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,12 +28,9 @@ public class Fragment_CurrencyDetailed extends Fragment {
         Bundle b = getArguments();
         if(b != null && b.containsKey(Currency.CURRENCY_NAME)){
             currency = new Currency(b);
-            Log.d(MainActivity.LOG_DEBUG, "recieved bundle data");
-            Log.d(MainActivity.LOG_DEBUG, currency.getName());
         }
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

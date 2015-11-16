@@ -8,7 +8,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,7 +77,6 @@ public class Fragment3_CurrencyRateGraph extends Fragment
 
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootview=inflater.inflate(R.layout.fragment3_currency_rate_graph, container, false);
@@ -133,19 +131,15 @@ public class Fragment3_CurrencyRateGraph extends Fragment
 
         switch (v.getId()) {
             case R.id.button1:
-                Log.d(MainActivity.LOG_DEBUG, "change date button clicked");
                 setStartDate();
                 break;
             case R.id.button2:
-                Log.d(MainActivity.LOG_DEBUG, "get log data button clicked");
                 setEndDate();
                 break;
             case R.id.button3:
-                Log.d(MainActivity.LOG_DEBUG, "change date button clicked");
                 buildGraph();
                 break;
             case R.id.button4:
-                Log.d(MainActivity.LOG_DEBUG, "get log data button clicked");
                 clearGraph();
                 break;
         }
@@ -260,8 +254,6 @@ public class Fragment3_CurrencyRateGraph extends Fragment
             DateFormat df = new SimpleDateFormat("yyyy-M-dd", Locale.getDefault());
             startDate = df.parse(startYear + "-" + startMonth + "-" + startDay);
             endDate = df.parse(endYear + "-" + endMonth + "-" + endDay);
-            Log.d("map dates startDate-", startDate.toString());
-            Log.d("map dates endDate-", endDate.toString());
         } catch (ParseException e) {
             e.printStackTrace();
         }

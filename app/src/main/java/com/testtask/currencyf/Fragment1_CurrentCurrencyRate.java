@@ -3,12 +3,10 @@ package com.testtask.currencyf;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +32,6 @@ import java.util.List;
 public class Fragment1_CurrentCurrencyRate extends Fragment
         implements View.OnClickListener {
 
-    public static final String LOG_DEBUG ="Debug" ;
     private ProgressBar pb;
     private List<MyTask> tasks;
     private List<Currency> list;
@@ -48,7 +45,6 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
     public Fragment1_CurrentCurrencyRate(){
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -75,7 +71,7 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
     }
 
     private void requestData(String uri) {
-        Log.d(LOG_DEBUG, "button clicked3");
+        Log.d(MainActivity.LOG_DEBUG, "button clicked3");
         MyTask task = new MyTask();
         task.execute(uri);
     }
@@ -109,7 +105,6 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
 
 
     public boolean isOnline() {
-        Log.d(LOG_DEBUG, "check online");
         ConnectivityManager cm = (ConnectivityManager) getActivity()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
@@ -122,7 +117,6 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
 
     public void getCurrencyRate() {
         if (isOnline()) {
-            Log.d(LOG_DEBUG, "button clicked2");
             requestData(PB_API);
         } else {
             Toast.makeText(getActivity(), "Network isn't available", Toast.LENGTH_LONG).show();
@@ -137,17 +131,14 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
                 getCurrencyRate();
                 break;
             case R.id.usd_linear_layout:
-                Log.d(LOG_DEBUG, "usd layout clicked");
                 Currency cur = list.get(2);
                 activity.onItemSelected2(cur);
                 break;
             case R.id.eur_linear_layout:
-                Log.d(LOG_DEBUG, "eur layout clicked");
                 Currency cur2 = list.get(1);
                 activity.onItemSelected2(cur2);
                 break;
             case R.id.rub_linear_layout:
-                Log.d(LOG_DEBUG, "rub layout clicked");
                 Currency cur3 = list.get(0);
                 activity.onItemSelected2(cur3);
                 break;
@@ -160,7 +151,6 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
 
         @Override
         protected void onPreExecute() {
-            Log.d(LOG_DEBUG, "button clicked4");
             if (tasks.size()==0){
                 pb.setVisibility(View.VISIBLE);
             }
@@ -169,7 +159,6 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
 
         @Override
         protected String doInBackground(String... params) {
-
             String content = HttpManager.getData(params[0]);
             return content;
         }
