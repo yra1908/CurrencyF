@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#29526e</color>
     <color name="colorAccent">#322466</color>
     <color name="colorBar">#2e5d7d</color>
-    <color name="backgroundLayout">#ccd9e2</color>
+    <color name="backgroundLayout">#ccd9e2</color>+
+    <color name="colorDropdown">#220e0e0e</color>
 
 </resources>

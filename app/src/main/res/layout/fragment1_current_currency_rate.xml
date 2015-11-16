@@ -12,7 +12,6 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
 
-
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
@@ -22,7 +21,6 @@
             android:layout_below="@+id/rub_linear_layout"
             android:layout_marginTop="5dp"
             android:text="@string/get_currency_rate_button" />
-
 
         <TextView
             android:id="@+id/textView2"
@@ -62,8 +60,7 @@
             android:layout_below="@+id/textView2"
             tools:ignore="Orientation"
             android:padding="5dp"
-            android:background="@drawable/my_border"
-            >
+            android:background="@drawable/my_border">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -175,7 +172,6 @@
 
         </RelativeLayout>
 
-
         <RelativeLayout
             android:id="@+id/rub_linear_layout"
             android:layout_width="match_parent"
@@ -247,4 +243,5 @@
             android:layout_centerVertical="true" />
 
     </RelativeLayout>
+
 </ScrollView>

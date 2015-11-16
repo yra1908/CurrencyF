@@ -56,4 +56,5 @@
         android:layout_toLeftOf="@+id/saleCoef"
         android:layout_toStartOf="@+id/saleCoef"
         android:layout_margin="5dp" />
+
 </RelativeLayout>

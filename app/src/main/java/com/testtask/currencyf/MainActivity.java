@@ -27,7 +27,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        Fragment2_LogCurrencyRate.Callbacks{
+        Fragment2_LogCurrencyRate.Callbacks,
+        Fragment1_CurrentCurrencyRate.Callbacks2{
 
     public static final String LOG_DEBUG ="Debug";
     public static final String CURRENCY_BUNDLE ="CurrencyBundle";
@@ -127,11 +128,11 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    /*//overriding method of callback interface for recieving data
+    //overriding method of callback interface for recieving data
     // from fragment and sending them to new frag
     //Using it when replacing fragments in one activity & sending data
     @Override
-    public void onItemSelected(Currency currency) {
+    public void onItemSelected2(Currency currency) {
         Bundle b = currency.toBundle();
         Fragment_CurrencyDetailed frag = new Fragment_CurrencyDetailed();
         frag.setArguments(b);
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity
         getFragmentManager().beginTransaction()
                 .replace(R.id.myContainer, frag)
                 .commit();
+    }
 
-    }*/
+
 }

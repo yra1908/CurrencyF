@@ -38,7 +38,7 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
     private ProgressBar pb;
     private List<MyTask> tasks;
     private List<Currency> list;
-    //private Callbacks activity;
+    private Callbacks2 activity;
 
 
     private static final String PB_API = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
@@ -61,13 +61,13 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
         Button b = (Button) rootview.findViewById(R.id.button);
         b.setOnClickListener(this);
 
-        /*//setting onclick listener to layout
+        //setting onclick listener to layout
         RelativeLayout usdRL=(RelativeLayout)rootview.findViewById(R.id.usd_linear_layout);
         RelativeLayout eurRL=(RelativeLayout)rootview.findViewById(R.id.eur_linear_layout);
         RelativeLayout rubRL=(RelativeLayout)rootview.findViewById(R.id.rub_linear_layout);
         usdRL.setOnClickListener(this);
         eurRL.setOnClickListener(this);
-        rubRL.setOnClickListener(this);*/
+        rubRL.setOnClickListener(this);
 
         getCurrencyRate();
 
@@ -136,21 +136,21 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
             case R.id.button:
                 getCurrencyRate();
                 break;
-            /*case R.id.usd_linear_layout:
+            case R.id.usd_linear_layout:
                 Log.d(LOG_DEBUG, "usd layout clicked");
                 Currency cur = list.get(2);
-                activity.onItemSelected(cur);
+                activity.onItemSelected2(cur);
                 break;
             case R.id.eur_linear_layout:
                 Log.d(LOG_DEBUG, "eur layout clicked");
                 Currency cur2 = list.get(1);
-                activity.onItemSelected(cur2);
+                activity.onItemSelected2(cur2);
                 break;
             case R.id.rub_linear_layout:
                 Log.d(LOG_DEBUG, "rub layout clicked");
                 Currency cur3 = list.get(0);
-                activity.onItemSelected(cur3);
-                break;*/
+                activity.onItemSelected2(cur3);
+                break;
         }
 
     }
@@ -188,14 +188,14 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
         }
     }
 
-    /*//interface for sending data (currency Bundle) to main activity
-    public interface Callbacks{
-        public void onItemSelected(Currency currency);
+    //interface for sending data (currency Bundle) to main activity
+    public interface Callbacks2{
+        public void onItemSelected2(Currency currency);
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        this.activity= (Callbacks) activity;*/
-//    }
+        this.activity= (Callbacks2) activity;
+    }
 }
