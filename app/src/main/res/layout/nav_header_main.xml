@@ -16,18 +16,21 @@
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:paddingTop="5dp"
-        android:src="@android:drawable/sym_def_app_icon" />
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:text="41X Studio"
+        android:text="Demo App"
         android:layout_gravity="right"
-        android:textSize="25dp"
-        android:paddingBottom="5dp"
-        android:layout_marginBottom="10dp"/>
+        android:textSize="22dp"
+        android:layout_marginBottom="5dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Created by Chikh Yuriy"
+        android:layout_gravity="right"
+        android:textSize="18dp"/>
 
     <TextView
         android:id="@+id/textView"
@@ -35,7 +38,7 @@
         android:layout_height="wrap_content"
         android:text="yra1908@gmail.com"
         android:layout_gravity="right"
-        android:textSize="20dp"
-        android:layout_marginBottom="3dp"/>
+        android:textSize="18dp"
+        android:layout_marginBottom="5dp"/>
 
 </LinearLayout>

@@ -2,12 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/current_rate" android:icon="@drawable/currency_exchange"
+        <item android:id="@+id/current_rate" android:icon="@drawable/bar_exchange_icon"
             android:title="Current Exchange Rate" />
-        <item android:id="@+id/currency_log" android:icon="@drawable/list"
+        <item android:id="@+id/currency_log" android:icon="@drawable/bar_list_icon"
             android:title="Exchange Rate Log" />
-        <item android:id="@+id/currency_graph" android:icon="@drawable/line_chart"
+        <item android:id="@+id/currency_graph" android:icon="@drawable/bar_graph_icon"
             android:title="Graph Builder" />
     </group>
+
+    <item android:id="@+id/info_main" android:icon="@drawable/bar_info_icon" android:title="Information">
+        <menu>
+            <item android:id="@+id/info"
+                android:title="It's a Demo application" />
+        </menu>
+    </item>
+
 
 </menu>
