@@ -49,6 +49,8 @@ public class Fragment2_LogCurrencyRate extends ListFragment
     private List<MyTask> tasks;
 
     private static final String LOG_PB_API = "https://api.privatbank.ua/p24api/exchange_rates?json&date=";
+    private static final String NETWORK_NOT_AVAILABLE = "Network isn't available";
+
 
     public Fragment2_LogCurrencyRate(){
 
@@ -120,7 +122,7 @@ public class Fragment2_LogCurrencyRate extends ListFragment
             String API = LOG_PB_API + day + "."+ inputMonth + "." + year;
             requestData(API);
         } else {
-            Toast.makeText(getActivity(), "Network isn't available", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), NETWORK_NOT_AVAILABLE, Toast.LENGTH_LONG).show();
         }
     }
 

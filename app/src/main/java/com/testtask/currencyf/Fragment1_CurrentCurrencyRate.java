@@ -39,6 +39,7 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
 
 
     private static final String PB_API = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
+    private static final String NETWORK_NOT_AVAILABLE = "Network isn't available";
 
     View rootview;
 
@@ -119,7 +120,7 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
         if (isOnline()) {
             requestData(PB_API);
         } else {
-            Toast.makeText(getActivity(), "Network isn't available", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), NETWORK_NOT_AVAILABLE, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -131,16 +132,28 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
                 getCurrencyRate();
                 break;
             case R.id.usd_linear_layout:
-                Currency cur = list.get(2);
-                activity.onItemSelected2(cur);
+                if(isOnline()){
+                    Currency cur = list.get(2);
+                    activity.onItemSelected2(cur);
+                } else {
+                    Toast.makeText(getActivity(), NETWORK_NOT_AVAILABLE, Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.eur_linear_layout:
-                Currency cur2 = list.get(1);
-                activity.onItemSelected2(cur2);
+                if(isOnline()){
+                    Currency cur2 = list.get(1);
+                    activity.onItemSelected2(cur2);
+                } else {
+                    Toast.makeText(getActivity(), NETWORK_NOT_AVAILABLE, Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.rub_linear_layout:
-                Currency cur3 = list.get(0);
-                activity.onItemSelected2(cur3);
+                if(isOnline()){
+                    Currency cur3 = list.get(0);
+                    activity.onItemSelected2(cur3);
+                } else {
+                    Toast.makeText(getActivity(), NETWORK_NOT_AVAILABLE, Toast.LENGTH_LONG).show();
+                }
                 break;
         }
 

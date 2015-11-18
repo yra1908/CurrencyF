@@ -52,6 +52,7 @@ public class Fragment3_CurrencyRateGraph extends Fragment
     private static final String MINFIN_USD_API = "http://minfin.com.ua/data/currency/ib/usd.ib.stock.json";
     private static final String MINFIN_EUR_API = "http://minfin.com.ua/data/currency/ib/eur.ib.stock.json";
     private static final String MINFIN_RUB_API = "http://minfin.com.ua/data/currency/ib/rub.ib.stock.json";
+    private static final String NETWORK_NOT_AVAILABLE = "Network isn't available";
     private static final String USD = "USD";
     private static final String EUR = "EUR";
     private static final String RUB = "RUB";
@@ -232,14 +233,14 @@ public class Fragment3_CurrencyRateGraph extends Fragment
                 requestData(MINFIN_RUB_API);
             }
         } else {
-            Toast.makeText(getActivity(), "Network isn't available", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), NETWORK_NOT_AVAILABLE, Toast.LENGTH_LONG).show();
         }
     }
 
     public void buildGraph() {
 
         if (!isOnline()) {
-            Toast.makeText(getActivity(), "Network isn't available", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), NETWORK_NOT_AVAILABLE, Toast.LENGTH_LONG).show();
             return;
         }
 
