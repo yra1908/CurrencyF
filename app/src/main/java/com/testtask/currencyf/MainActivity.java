@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.testtask.currencyf.domain.Currency;
 
@@ -86,6 +87,8 @@ public class MainActivity extends AppCompatActivity
             selectedFrag= new Fragment2_LogCurrencyRate();
         } else if (id == R.id.currency_graph) {
             selectedFrag= new Fragment3_CurrencyRateGraph();
+        } else {
+            return true;
         }
 
         FragmentManager fragmentManager = getFragmentManager();
