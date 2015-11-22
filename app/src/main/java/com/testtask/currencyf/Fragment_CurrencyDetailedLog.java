@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +14,7 @@ import com.testtask.currencyf.domain.Currency;
 /**
  * Created by 41X on 14.11.2015.
  */
-public class Fragment_CurrencyDetailedLog extends Fragment {
+public class Fragment_CurrencyDetailedLog extends Fragment{
 
     Currency currency;
 
@@ -62,6 +63,11 @@ public class Fragment_CurrencyDetailedLog extends Fragment {
 
         }
 
+        Button b = (Button) rootview.findViewById(R.id.backToMainActivity);
+        b.setVisibility(View.INVISIBLE);
+
         return rootview;
     }
+
+
 }

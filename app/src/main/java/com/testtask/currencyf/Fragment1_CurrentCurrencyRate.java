@@ -55,6 +55,7 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
         pb.setVisibility(View.INVISIBLE);
         tasks = new ArrayList<>();
 
+
         Button b = (Button) rootview.findViewById(R.id.button);
         b.setOnClickListener(this);
 
@@ -67,6 +68,7 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
         rubRL.setOnClickListener(this);
 
         getCurrencyRate();
+
 
         return rootview;
     }

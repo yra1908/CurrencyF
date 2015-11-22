@@ -2,9 +2,11 @@ package com.testtask.currencyf;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +15,8 @@ import com.testtask.currencyf.domain.Currency;
 /**
  * Created by 41X on 14.11.2015.
  */
-public class Fragment_CurrencyDetailed extends Fragment {
+public class Fragment_CurrencyDetailed extends Fragment
+        implements View.OnClickListener {
 
     Currency currency;
 
@@ -65,6 +68,19 @@ public class Fragment_CurrencyDetailed extends Fragment {
             image.setImageResource(res);
 
         }
+
+        Button b = (Button) rootview.findViewById(R.id.backToMainActivity);
+        b.setOnClickListener(this);
         return rootview;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Log.d(MainActivity.LOG_DEBUG, "back buttom clicked");
+        Fragment1_CurrentCurrencyRate frag = new Fragment1_CurrentCurrencyRate();
+
+        getFragmentManager().beginTransaction()
+                .replace(R.id.myContainer, frag)
+                .commit();
     }
 }
