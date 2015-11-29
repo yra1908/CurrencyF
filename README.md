@@ -1,7 +1,7 @@
-# CurrencyF
+# Exchange Rate
 It's a demo application.
 Created by Yuriy Chikh.
-App show Currency Exchange Rate.
+App show Currency Exchange Rate. /n
 API that was used:
 PrivatBank API for current Currency Exchange Rate - https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5
 PrivatBank API for Currency Exchange Rate by specified Date - https://api.privatbank.ua/p24api/exchange_rates?json&date=01.12.2014
