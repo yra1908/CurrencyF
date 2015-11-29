@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Utility class for making REST request
+ */
 public class HttpManager {
 
     public static String getData(String uri) {

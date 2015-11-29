@@ -14,7 +14,10 @@ import com.testtask.currencyf.domain.Currency;
 
 import java.util.List;
 
-
+/**
+ * Utility class for displaying Currency Rates as List on
+ * Log Fragment
+ */
 public class CurrencyAdapter extends ArrayAdapter<Currency>{
 
     private  Context context;

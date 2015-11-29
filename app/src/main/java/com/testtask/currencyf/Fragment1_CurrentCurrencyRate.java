@@ -25,10 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 41X on 13.11.2015.
+ * Start Fragment. Show current exchange Rate
  */
-
-
 public class Fragment1_CurrentCurrencyRate extends Fragment
         implements View.OnClickListener {
 
@@ -73,12 +71,29 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
         return rootview;
     }
 
+    /**
+     * Updating current Currency Rate
+     */
+    public void getCurrencyRate() {
+        if (isOnline()) {
+            requestData(PB_API);
+        } else {
+            Toast.makeText(getActivity(), NETWORK_NOT_AVAILABLE, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Start AsyncTask for getting List<Currency> from PB API
+     * @param uri
+     */
     private void requestData(String uri) {
-        Log.d(MainActivity.LOG_DEBUG, "button clicked3");
         MyTask task = new MyTask();
         task.execute(uri);
     }
 
+    /**
+     * Updating View with current Exchange Rate Data
+     */
     protected void updateDisplay() {
 
         TextView resSaleUSD = (TextView) getView().findViewById(R.id.saleUSD);
@@ -106,7 +121,10 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
         }
     }
 
-
+    /**
+     * Checking if Network available
+     * @return boolean
+     */
     public boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getActivity()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -118,14 +136,11 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
         }
     }
 
-    public void getCurrencyRate() {
-        if (isOnline()) {
-            requestData(PB_API);
-        } else {
-            Toast.makeText(getActivity(), NETWORK_NOT_AVAILABLE, Toast.LENGTH_LONG).show();
-        }
-    }
 
+    /**
+     * Listener for items on page selected
+     * @param v id of selected item
+     */
     @Override
     public void onClick(View v) {
 
@@ -161,7 +176,11 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
 
     }
 
-
+    /**
+     * Creating new Thread for making request
+     * API for request - PrivatBank current exchange Rate
+     * Receiving List<Currency>
+     */
     private class MyTask extends AsyncTask<String, String, String> {
 
         @Override
@@ -192,7 +211,10 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
         }
     }
 
-    //interface for sending data (currency Bundle) to main activity
+
+    /**
+     * Interface for sending data (currency Bundle) to main activity
+     */
     public interface Callbacks2{
         public void onItemSelected2(Currency currency);
     }

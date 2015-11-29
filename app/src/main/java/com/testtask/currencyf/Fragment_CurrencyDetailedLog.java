@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.testtask.currencyf.domain.Currency;
 
 /**
- * Created by 41X on 14.11.2015.
+ * Fragment for  showing detailed Currency Exchange Rate from Log Fragment
  */
 public class Fragment_CurrencyDetailedLog extends Fragment{
 
@@ -63,6 +63,8 @@ public class Fragment_CurrencyDetailedLog extends Fragment{
 
         }
 
+        //setting visibility of button to none. Becouse Using the same layout twice
+        //Don't need this button here.
         Button b = (Button) rootview.findViewById(R.id.backToMainActivity);
         b.setVisibility(View.INVISIBLE);
 

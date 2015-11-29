@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.testtask.currencyf.domain.Currency;
 
 /**
- * Created by 41X on 14.11.2015.
+ * Fragment for  showing detailed Currency Exchange Rate from Start Fragment
  */
 public class Fragment_CurrencyDetailed extends Fragment
         implements View.OnClickListener {
@@ -54,10 +54,10 @@ public class Fragment_CurrencyDetailed extends Fragment
             tv3.append(" - " + String.valueOf(currency.getBuyCoef()));
 
             TextView tv4 = (TextView) rootview.findViewById(R.id.textView4);
-            tv4.append(" - " + String.valueOf(currency.getSaleCoefNB()));
+            tv4.setVisibility(View.INVISIBLE);
 
             TextView tv5 = (TextView) rootview.findViewById(R.id.textView5);
-            tv5.append(" - " + String.valueOf(currency.getBuyCoefNB()));
+            tv5.setVisibility(View.INVISIBLE);
 
             ImageView image = (ImageView) rootview.findViewById(R.id.imageView5);
             String imageName = currency.getName().toLowerCase();
@@ -74,6 +74,10 @@ public class Fragment_CurrencyDetailed extends Fragment
         return rootview;
     }
 
+    /**
+     * Movving back to Start Fragment
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         Log.d(MainActivity.LOG_DEBUG, "back buttom clicked");

@@ -42,10 +42,8 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 /**
- * Created by 41X on 13.11.2015.
+ * Fragment for building Graph for specified period
  */
-
-
 public class Fragment3_CurrencyRateGraph extends Fragment
         implements View.OnClickListener{
 
@@ -127,6 +125,10 @@ public class Fragment3_CurrencyRateGraph extends Fragment
         return rootview;
     }
 
+    /**
+     * Listener for buttons on page clicked
+     * @param v id of selected item
+     */
     @Override
     public void onClick(View v) {
 
@@ -147,7 +149,9 @@ public class Fragment3_CurrencyRateGraph extends Fragment
 
     }
 
-    // display current date
+    /**
+     * Display Current Date
+     */
     public void setCurrentDateOnView() {
 
         final Calendar c = Calendar.getInstance();
@@ -168,6 +172,9 @@ public class Fragment3_CurrencyRateGraph extends Fragment
 
     }
 
+    /**
+     * Setting start Date
+     */
     public void setStartDate() {
         int inputMonth=startMonth-1;
         DatePickerDialog d = new DatePickerDialog(getActivity(),
@@ -175,7 +182,9 @@ public class Fragment3_CurrencyRateGraph extends Fragment
         d.show();
     }
 
-
+    /**
+     * Setting end Date
+     */
     public void setEndDate() {
         int inputMonth=endMonth-1;
         DatePickerDialog d = new DatePickerDialog(getActivity(),
@@ -184,7 +193,9 @@ public class Fragment3_CurrencyRateGraph extends Fragment
 
     }
 
-
+    /**
+     * Dialog - setting start Date
+     */
     private DatePickerDialog.OnDateSetListener datePickerListener =
             new DatePickerDialog.OnDateSetListener() {
 
@@ -201,6 +212,9 @@ public class Fragment3_CurrencyRateGraph extends Fragment
                 }
             };
 
+    /**
+     * Dialog - setting end Date
+     */
     private DatePickerDialog.OnDateSetListener datePickerListener2 =
             new DatePickerDialog.OnDateSetListener() {
 
@@ -217,10 +231,17 @@ public class Fragment3_CurrencyRateGraph extends Fragment
                 }
             };
 
+    /**
+     * Clear graph
+     */
     public void clearGraph() {
         graph.removeAllSeries();
     }
 
+    /**
+     * Get Data sorted TreeMap<Date, Currency> (Currency Exchange Rate with Date)
+     * from MINFIN API
+     */
     private void getMinfinData() {
         if (isOnline()) {
             if (currencyType.equals(USD)) {
@@ -237,6 +258,9 @@ public class Fragment3_CurrencyRateGraph extends Fragment
         }
     }
 
+    /**
+     * Building Graph
+     */
     public void buildGraph() {
 
         if (!isOnline()) {
@@ -303,6 +327,10 @@ public class Fragment3_CurrencyRateGraph extends Fragment
 
     }
 
+    /**
+     * Checking if Network available
+     * @return boolean
+     */
     public boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getActivity()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -314,6 +342,10 @@ public class Fragment3_CurrencyRateGraph extends Fragment
         }
     }
 
+    /**
+     * Start AsyncTask for getting TreeMap<Date, Currency> from MINFIN API
+     * @param uri
+     */
     private void requestData(String uri) {
         MyTask task = new MyTask();
         task.execute(uri);

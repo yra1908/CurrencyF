@@ -29,10 +29,8 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * Created by 41X on 13.11.2015.
+ * Log Fragment. Show Currency Exchange Rate for specified day
  */
-
-
 public class Fragment2_LogCurrencyRate extends ListFragment
         implements View.OnClickListener{
 
@@ -51,7 +49,10 @@ public class Fragment2_LogCurrencyRate extends ListFragment
     private static final String LOG_PB_API = "https://api.privatbank.ua/p24api/exchange_rates?json&date=";
     private static final String NETWORK_NOT_AVAILABLE = "Network isn't available";
 
-
+    /**
+     * Constructor without params
+     * Need it for ArrayAdapter(Items showed as List)
+     */
     public Fragment2_LogCurrencyRate(){
 
     }
@@ -75,7 +76,9 @@ public class Fragment2_LogCurrencyRate extends ListFragment
         return rootview;
     }
 
-    // display current date
+    /**
+     * Display current date
+     */
     public void setCurrentDateOnView() {
 
         tvDisplayDate = (TextView) rootview.findViewById(R.id.startDateRes);
@@ -93,13 +96,18 @@ public class Fragment2_LogCurrencyRate extends ListFragment
 
     }
 
-    //setting date for query
+    /**
+     * Setting date for query
+     */
     public void setDate() {
         DatePickerDialog d = new DatePickerDialog(getActivity(),
                 datePickerListener, year, month, day);
         d.show();
     }
 
+    /**
+     * Dialog - setting Date
+     */
     private DatePickerDialog.OnDateSetListener datePickerListener =
             new DatePickerDialog.OnDateSetListener() {
 
@@ -115,6 +123,9 @@ public class Fragment2_LogCurrencyRate extends ListFragment
                 }
             };
 
+    /**
+     * Get Currency Exchange Rate for specified Date
+     */
     public void getCurrencyLogForSetDate() {
 
         if (isOnline()) {
@@ -126,6 +137,19 @@ public class Fragment2_LogCurrencyRate extends ListFragment
         }
     }
 
+    /**
+     * Start AsyncTask for getting List<Currency> from PB API
+     * @param uri
+     */
+    private void requestData(String uri) {
+        MyTask task = new MyTask();
+        task.execute(uri);
+    }
+
+    /**
+     * Checking if Network available
+     * @return boolean
+     */
     public boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getActivity()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -137,11 +161,9 @@ public class Fragment2_LogCurrencyRate extends ListFragment
         }
     }
 
-    private void requestData(String uri) {
-        MyTask task = new MyTask();
-        task.execute(uri);
-    }
-
+    /**
+     * Updating View with Exchange Rate Data
+     */
     private void updateDisplay() {
 
         CurrencyAdapter adapter = new CurrencyAdapter(getActivity(), R.layout.fragment2_log_currency_rate, list);
@@ -152,6 +174,10 @@ public class Fragment2_LogCurrencyRate extends ListFragment
 
     }
 
+    /**
+     * Listener for buttons on page clicked
+     * @param v id of selected item
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -165,6 +191,11 @@ public class Fragment2_LogCurrencyRate extends ListFragment
 
     }
 
+    /**
+     * Creating new Thread for making request
+     * API for request - PrivatBank LOG exchange Rate
+     * Receiving List<Currency>
+     */
     private class MyTask extends AsyncTask<String, String, String> {
 
         @Override
@@ -185,9 +216,7 @@ public class Fragment2_LogCurrencyRate extends ListFragment
         @Override
         protected void onPostExecute(String result) {
 
-
             list = CurrencyJSONParser.parseLogFeed(result);
-
 
             updateDisplay();
 
@@ -199,7 +228,9 @@ public class Fragment2_LogCurrencyRate extends ListFragment
 
     }
 
-    //interface for sending data (currency Bundle) to main activity
+    /**
+     * Interface for sending data (currency Bundle) to main activity
+     */
     public interface Callbacks{
         public void onItemSelected(Currency currency);
     }
@@ -210,6 +241,13 @@ public class Fragment2_LogCurrencyRate extends ListFragment
         this.activity= (Callbacks) activity;
     }
 
+    /**
+     * OnClick listener for List items
+     * @param l
+     * @param v
+     * @param position
+     * @param id
+     */
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Currency currency = list.get(position);

@@ -17,9 +17,16 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TreeMap;
 
-
+/**
+ * Utility class for parsing results of REST requests
+ */
 public class CurrencyJSONParser {
 
+    /**
+     * Parsing JSON with current Currency Exchange Rate
+     * @param content - JSON with current Currency Exchange Rate
+     * @return List<Currency> object
+     */
     public static List<Currency> parseFeed(String content){
 
         try {
@@ -46,6 +53,11 @@ public class CurrencyJSONParser {
         }
     }
 
+    /**
+     * Parsing JSON with Currency Exchange Rate for specified Date
+     * @param content - JSON with Currency Exchange Rate
+     * @return List<Currency> object
+     */
     public static List<Currency> parseLogFeed(String content) {
 
         try {
@@ -88,6 +100,11 @@ public class CurrencyJSONParser {
         }
     }
 
+    /**
+     * Parsing JSON with Currency Exchange Rate by Date
+     * @param content - JSON with Currency Exchange Rate by Date
+     * @return TreeMap<Date, Currency> object
+     */
     public static TreeMap<Date, Currency> parseMinfinFeed(String content) {
 
         try {

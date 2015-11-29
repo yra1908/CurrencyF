@@ -85,7 +85,10 @@ public class Currency {
 
     public Currency(){}
 
-    //	Create from a bundle
+    /**
+     * Create Currency instancr from a Bundle
+     * @param b
+     */
     public Currency (Bundle b) {
         if (b != null) {
             this.name = b.getString(CURRENCY_NAME);
@@ -96,7 +99,10 @@ public class Currency {
         }
     }
 
-    //	Package data for transfer between activities
+    /**
+     * Pack Currency to Bundle (for transfer between activities)
+     * @return Bundle with Currency object
+     */
     public Bundle toBundle() {
         Bundle b = new Bundle();
         b.putString(CURRENCY_NAME, this.name);

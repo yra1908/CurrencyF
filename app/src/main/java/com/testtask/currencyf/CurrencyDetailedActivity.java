@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+/**
+ * Activity for showing detailed Currency Exchange Rate
+ */
 public class CurrencyDetailedActivity extends AppCompatActivity  {
 
     @Override
@@ -33,12 +36,10 @@ public class CurrencyDetailedActivity extends AppCompatActivity  {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //moving back to Main Activity
         if (id == android.R.id.home) {
            finish();
         }

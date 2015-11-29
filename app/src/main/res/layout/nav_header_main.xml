@@ -8,7 +8,6 @@
     android:paddingBottom="1dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="1dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:weightSum="0">
 
