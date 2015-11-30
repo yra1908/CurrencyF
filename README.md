@@ -3,7 +3,7 @@ It's a demo application.
 Created by Yuriy Chikh.
 
 
-App show Currency Exchange Rate.
+App shows Currency Exchange Rate, archived Exchange Rate, built graph of Currency Exchange Rate for selected time period.
 
 
 API that was used:
