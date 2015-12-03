@@ -1,6 +1,6 @@
 # Exchange Rate
 It's a demo application.
-Created by Yuriy Chikh.
+Created by Yuriy Chikh. Direct download link for application - https://drive.google.com/file/d/0B8mJjzVx9OeQSElBQ0plc054dUk/view?usp=sharing
 
 
 App shows Currency Exchange Rate, archived Exchange Rate, built graph of Currency Exchange Rate for selected time period.
