@@ -39,7 +39,7 @@ public class Fragment_CurrencyDetailedLog extends Fragment{
 
         if(currency != null){
             TextView tv = (TextView) rootview.findViewById(R.id.textView);
-            tv.append(" - " + currency.getName());
+            tv.append(" - " + currency.getName().toString());
 
             TextView tv2 = (TextView) rootview.findViewById(R.id.textView2);
             tv2.append(" - " + String.valueOf(currency.getSaleCoef()));
@@ -54,7 +54,7 @@ public class Fragment_CurrencyDetailedLog extends Fragment{
             tv5.append(" - " + String.valueOf(currency.getBuyCoefNB()));
 
             ImageView image = (ImageView) rootview.findViewById(R.id.imageView5);
-            String imageName = currency.getName().toLowerCase();
+            String imageName = currency.getName().toString().toLowerCase();
 
 
             int res = getResources().getIdentifier(imageName, "drawable", MainActivity.PACKAGE_NAME);

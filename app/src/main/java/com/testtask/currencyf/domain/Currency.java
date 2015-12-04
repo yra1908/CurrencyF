@@ -15,15 +15,18 @@ public class Currency {
     public static final String BUY_COEF_NB = "buyCoefNB";
     public static final String SALE_COEF_NB = "saleCoefNB";
 
+    public enum Type {
+        USD, EUR, RUB, RUR, CAD, CHF, GBP, PLZ, SEK, UAH, XAU
+    }
 
-    private String name;
+    private Type name;
     private String shortName;
     private double buyCoef;
     private double saleCoef;
     private double saleCoefNB;
     private double buyCoefNB;
 
-    public String getName() {
+    public Type getName() {
         return name;
     }
 
@@ -47,7 +50,7 @@ public class Currency {
         return buyCoefNB;
     }
 
-    public void setName(String name) {
+    public void setName(Type name) {
         this.name = name;
     }
 
@@ -74,7 +77,7 @@ public class Currency {
     @Override
     public String toString() {
         return "Currency{" +
-                "name='" + name + '\'' +
+                "name='" + name.toString() + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", buyCoef=" + buyCoef +
                 ", saleCoef=" + saleCoef +
@@ -91,7 +94,7 @@ public class Currency {
      */
     public Currency (Bundle b) {
         if (b != null) {
-            this.name = b.getString(CURRENCY_NAME);
+            this.name = Type.valueOf(b.getString(CURRENCY_NAME).toUpperCase());
             this.buyCoef = b.getDouble(BUY_COEF);
             this.saleCoef = b.getDouble(SALE_COEF);
             this.buyCoefNB=b.getDouble(BUY_COEF_NB);
@@ -105,7 +108,7 @@ public class Currency {
      */
     public Bundle toBundle() {
         Bundle b = new Bundle();
-        b.putString(CURRENCY_NAME, this.name);
+        b.putString(CURRENCY_NAME, this.name.toString());
         b.putDouble(BUY_COEF, this.buyCoef);
         b.putDouble(SALE_COEF, this.saleCoef);
         b.putDouble(BUY_COEF_NB, this.buyCoefNB);

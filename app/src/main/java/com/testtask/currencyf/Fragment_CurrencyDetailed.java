@@ -41,11 +41,11 @@ public class Fragment_CurrencyDetailed extends Fragment
 
         if(currency != null){
 
-            if(currency.getName().equalsIgnoreCase("RUR")){
-                currency.setName("RUB");
+            if(currency.getName().toString().equalsIgnoreCase("RUR")){
+                currency.setName(Currency.Type.RUB);
             }
             TextView tv = (TextView) rootview.findViewById(R.id.textView);
-            tv.append(" - " + currency.getName());
+            tv.append(" - " + currency.getName().toString());
 
             TextView tv2 = (TextView) rootview.findViewById(R.id.textView2);
             tv2.append(" - " + String.valueOf(currency.getSaleCoef()));
@@ -60,7 +60,7 @@ public class Fragment_CurrencyDetailed extends Fragment
             tv5.setVisibility(View.INVISIBLE);
 
             ImageView image = (ImageView) rootview.findViewById(R.id.imageView5);
-            String imageName = currency.getName().toLowerCase();
+            String imageName = currency.getName().toString().toLowerCase();
 
 
             int res = getResources().getIdentifier(imageName, "drawable", MainActivity.PACKAGE_NAME);

@@ -105,15 +105,15 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
 
         if (list != null){
             for (Currency cur:list) {
-                if (cur.getName().equals("USD")){
+                if (cur.getName().equals(Currency.Type.USD)){
                     resSaleUSD.append((String.valueOf(cur.getSaleCoef())));
                     resBuyUSD.append((String.valueOf(cur.getBuyCoef())));
                 }
-                if (cur.getName().equals("EUR")){
+                if (cur.getName().equals(Currency.Type.EUR)){
                     resSaleEUR.append((String.valueOf(cur.getSaleCoef())));
                     resBuyEUR.append((String.valueOf(cur.getBuyCoef())));
                 }
-                if (cur.getName().equals("RUR")){
+                if (cur.getName().equals(Currency.Type.RUR)){
                     resSaleRUR.append((String.valueOf(cur.getSaleCoef())));
                     resBuyRUR.append((String.valueOf(cur.getBuyCoef())));
                 }
@@ -158,7 +158,7 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
                 break;
             case R.id.eur_linear_layout:
                 if(isOnline()){
-                    Currency cur2 = list.get(1);
+                    Currency cur2 = list.get(0);
                     activity.onItemSelected2(cur2);
                 } else {
                     Toast.makeText(getActivity(), NETWORK_NOT_AVAILABLE, Toast.LENGTH_LONG).show();
@@ -166,7 +166,7 @@ public class Fragment1_CurrentCurrencyRate extends Fragment
                 break;
             case R.id.rub_linear_layout:
                 if(isOnline()){
-                    Currency cur3 = list.get(0);
+                    Currency cur3 = list.get(1);
                     activity.onItemSelected2(cur3);
                 } else {
                     Toast.makeText(getActivity(), NETWORK_NOT_AVAILABLE, Toast.LENGTH_LONG).show();

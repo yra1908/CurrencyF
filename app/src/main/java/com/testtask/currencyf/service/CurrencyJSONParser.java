@@ -2,6 +2,7 @@ package com.testtask.currencyf.service;
 
 import android.util.Log;
 
+import com.testtask.currencyf.MainActivity;
 import com.testtask.currencyf.domain.Currency;
 
 import org.json.JSONArray;
@@ -38,7 +39,7 @@ public class CurrencyJSONParser {
                 JSONObject obj = ar.getJSONObject(i);
                 Currency currency = new Currency();
 
-                currency.setName(obj.getString("ccy"));
+                currency.setName(Currency.Type.valueOf(obj.getString("ccy").toUpperCase()));
                 currency.setSaleCoef(obj.getDouble("sale"));
                 currency.setBuyCoef(obj.getDouble("buy"));
 
@@ -64,7 +65,7 @@ public class CurrencyJSONParser {
 
             JSONObject jsonObject = new JSONObject(content);
             JSONArray ar = jsonObject.getJSONArray("exchangeRate");
-            Log.d("Parsing ar -", ar.toString());
+            Log.d(MainActivity.LOG_DEBUG, ar.toString());
             List<Currency> list = new ArrayList<>();
 
             for (int i=0; i<ar.length(); i++){
@@ -81,7 +82,7 @@ public class CurrencyJSONParser {
 
                     Currency currency = new Currency();
 
-                    currency.setName(obj.getString("currency"));
+                    currency.setName(Currency.Type.valueOf(obj.getString("currency").toUpperCase()));
                     currency.setShortName(obj.getString("currency"));
                     currency.setSaleCoef(obj.getDouble("saleRate"));
                     currency.setBuyCoef(obj.getDouble("purchaseRate"));
@@ -116,7 +117,7 @@ public class CurrencyJSONParser {
                 JSONObject obj = ar.getJSONObject(i);
                 Currency currency = new Currency();
 
-                currency.setName("USD");
+                currency.setName(Currency.Type.USD);
                 currency.setSaleCoef(obj.getDouble("bid"));
                 currency.setBuyCoef(obj.getDouble("ask"));
 

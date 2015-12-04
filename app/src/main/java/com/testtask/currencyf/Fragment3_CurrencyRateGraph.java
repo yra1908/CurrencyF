@@ -51,9 +51,6 @@ public class Fragment3_CurrencyRateGraph extends Fragment
     private static final String MINFIN_EUR_API = "http://minfin.com.ua/data/currency/ib/eur.ib.stock.json";
     private static final String MINFIN_RUB_API = "http://minfin.com.ua/data/currency/ib/rub.ib.stock.json";
     private static final String NETWORK_NOT_AVAILABLE = "Network isn't available";
-    private static final String USD = "USD";
-    private static final String EUR = "EUR";
-    private static final String RUB = "RUB";
 
     private int startYear;
     private int startMonth;
@@ -61,7 +58,7 @@ public class Fragment3_CurrencyRateGraph extends Fragment
     private int endYear;
     private int endMonth;
     private int endDay;
-    private String currencyType;
+    private Currency.Type currencyType;
     private TreeMap<Date, Currency> mapData;
 
     private GraphView graph;
@@ -102,8 +99,9 @@ public class Fragment3_CurrencyRateGraph extends Fragment
 
         //Spinner (dropdown)
         Spinner dropdown = (Spinner) rootview.findViewById(R.id.spinner);
-        String[] items = new String[]{USD, EUR, RUB};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
+        Currency.Type[] items = new Currency.Type[]{Currency.Type.USD,
+                Currency.Type.EUR, Currency.Type.RUB};
+        ArrayAdapter<Currency.Type> adapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
 
@@ -111,13 +109,13 @@ public class Fragment3_CurrencyRateGraph extends Fragment
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                currencyType = (String) parent.getItemAtPosition(position);
+                currencyType = (Currency.Type) parent.getItemAtPosition(position);
                 getMinfinData();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                currencyType = USD;
+                currencyType = Currency.Type.USD;
                 getMinfinData();
             }
         });
@@ -244,13 +242,13 @@ public class Fragment3_CurrencyRateGraph extends Fragment
      */
     private void getMinfinData() {
         if (isOnline()) {
-            if (currencyType.equals(USD)) {
+            if (currencyType.equals(Currency.Type.USD)) {
                 requestData(MINFIN_USD_API);
             }
-            if (currencyType.equals(EUR)) {
+            if (currencyType.equals(Currency.Type.EUR)) {
                 requestData(MINFIN_EUR_API);
             }
-            if (currencyType.equals(RUB)) {
+            if (currencyType.equals(Currency.Type.RUB)) {
                 requestData(MINFIN_RUB_API);
             }
         } else {
@@ -316,10 +314,10 @@ public class Fragment3_CurrencyRateGraph extends Fragment
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
         graph.getGridLabelRenderer().setNumHorizontalLabels(3);
 
-        if (currencyType.equals(EUR)) {
+        if (currencyType.equals(Currency.Type.EUR)) {
             series.setColor(Color.RED);
         }
-        if (currencyType.equals(RUB)) {
+        if (currencyType.equals(Currency.Type.RUB)) {
             series.setColor(Color.BLACK);
         }
         graph.addSeries(series);
