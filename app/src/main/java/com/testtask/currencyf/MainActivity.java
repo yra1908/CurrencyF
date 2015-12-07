@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -50,6 +51,9 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        //Set background transperency under drawer navigation view
+        drawer.setScrimColor(Color.parseColor("#33000000"));
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -61,7 +65,7 @@ public class MainActivity extends AppCompatActivity
         //defining marging Top by java code
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             DrawerLayout.LayoutParams lp = (DrawerLayout.LayoutParams) navigationView.getLayoutParams();
-            lp.setMargins(0, lp.topMargin + getStatusBarHeight(), 0, 0);
+            lp.setMargins(0, lp.topMargin + getStatusBarHeight()-1, 0, 0);
             navigationView.setLayoutParams(lp);
         }
     }
