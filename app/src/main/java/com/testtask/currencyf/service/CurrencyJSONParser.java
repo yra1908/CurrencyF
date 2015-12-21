@@ -25,30 +25,37 @@ public class CurrencyJSONParser {
 
     /**
      * Parsing JSON with current Currency Exchange Rate
+     *
      * @param content - JSON with current Currency Exchange Rate
      * @return List<Currency> object
      */
-    public static List<Currency> parseFeed(String content){
+    public static List<Currency> parseFeed(String content) {
 
         try {
             JSONArray ar = new JSONArray(content);
             List<Currency> list = new ArrayList<>();
 
-            for (int i=0; i<ar.length(); i++){
+            for (int i = 0; i < ar.length(); i++) {
 
                 JSONObject obj = ar.getJSONObject(i);
-                Currency currency = new Currency();
 
-                currency.setName(Currency.Type.valueOf(obj.getString("ccy").toUpperCase()));
-                currency.setSaleCoef(obj.getDouble("sale"));
-                currency.setBuyCoef(obj.getDouble("buy"));
+                if (obj.getString("ccy").equals("USD") ||
+                    obj.getString("ccy").equals("RUR") ||
+                    obj.getString("ccy").equals("EUR")) {
 
-                list.add(currency);
+                    Currency currency = new Currency();
+                    currency.setName(Currency.Type.valueOf(obj.getString("ccy").toUpperCase()));
+                    currency.setSaleCoef(obj.getDouble("sale"));
+                    currency.setBuyCoef(obj.getDouble("buy"));
+
+                    list.add(currency);
+                }
+
             }
 
             return list;
 
-        } catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }
@@ -56,6 +63,7 @@ public class CurrencyJSONParser {
 
     /**
      * Parsing JSON with Currency Exchange Rate for specified Date
+     *
      * @param content - JSON with Currency Exchange Rate
      * @return List<Currency> object
      */
@@ -68,17 +76,17 @@ public class CurrencyJSONParser {
             Log.d(MainActivity.LOG_DEBUG, ar.toString());
             List<Currency> list = new ArrayList<>();
 
-            for (int i=0; i<ar.length(); i++){
+            for (int i = 0; i < ar.length(); i++) {
 
                 JSONObject obj = ar.getJSONObject(i);
 
-                if(obj.getString("currency").equals("EUR") ||
+                if (obj.getString("currency").equals("EUR") ||
                         obj.getString("currency").equals("USD") ||
                         obj.getString("currency").equals("GBP") ||
                         obj.getString("currency").equals("PLZ") ||
                         obj.getString("currency").equals("RUB") ||
                         obj.getString("currency").equals("CAD") ||
-                        obj.getString("currency").equals("CHF") ){
+                        obj.getString("currency").equals("CHF")) {
 
                     Currency currency = new Currency();
 
@@ -95,7 +103,7 @@ public class CurrencyJSONParser {
 
             return list;
 
-        } catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }
@@ -103,6 +111,7 @@ public class CurrencyJSONParser {
 
     /**
      * Parsing JSON with Currency Exchange Rate by Date
+     *
      * @param content - JSON with Currency Exchange Rate by Date
      * @return TreeMap<Date, Currency> object
      */
@@ -110,9 +119,9 @@ public class CurrencyJSONParser {
 
         try {
             JSONArray ar = new JSONArray(content);
-            TreeMap<Date, Currency> mapData= new TreeMap<>();
+            TreeMap<Date, Currency> mapData = new TreeMap<>();
 
-            for (int i=0; i<ar.length(); i++){
+            for (int i = 0; i < ar.length(); i++) {
 
                 JSONObject obj = ar.getJSONObject(i);
                 Currency currency = new Currency();
@@ -122,14 +131,14 @@ public class CurrencyJSONParser {
                 currency.setBuyCoef(obj.getDouble("ask"));
 
                 DateFormat df = new SimpleDateFormat("yyyy-M-dd", Locale.getDefault());
-                Date date =  df.parse(obj.getString("date"));
+                Date date = df.parse(obj.getString("date"));
 
                 mapData.put(date, currency);
             }
 
             return mapData;
 
-        } catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
             return null;
         } catch (ParseException e) {
