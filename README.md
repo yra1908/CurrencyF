@@ -1,6 +1,7 @@
 # Exchange Rate
 It's a demo application.
 Created by Yuriy Chikh. App on Amazon AppStore - http://www.amazon.com/41X-Exchange-Rate/dp/B01A2ZWLWW
+
 Direct download link for apk file - https://drive.google.com/file/d/0B8mJjzVx9OeQRllIeFhWbktQMHc/view?usp=sharing
 
 
